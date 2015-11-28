@@ -6,10 +6,23 @@
 package Formularios;
 
 import Clases.Datos;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.ByteArrayInputStream;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +30,9 @@ import java.util.logging.Logger;
  */
 public class frmLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmLogin
-     */
+    private Image img;
+    private BufferedImage bi;
+
     public frmLogin() {
         initComponents();
     }
@@ -38,10 +51,10 @@ public class frmLogin extends javax.swing.JFrame {
         txtUsuario = new org.edisoncor.gui.textField.TextFieldRoundIcon();
         labelMetric3 = new org.edisoncor.gui.label.LabelMetric();
         txtClave = new org.edisoncor.gui.passwordField.PasswordFieldRoundIcon();
-        jButton1 = new javax.swing.JButton();
-        lb_user1 = new javax.swing.JLabel();
-        lb_user2 = new javax.swing.JLabel();
-        lb_user3 = new javax.swing.JLabel();
+        btnIngresar = new javax.swing.JButton();
+        imagen_user1 = new javax.swing.JLabel();
+        imagen_user2 = new javax.swing.JLabel();
+        imagen_user3 = new javax.swing.JLabel();
         lb_tipo1 = new org.edisoncor.gui.label.LabelMetric();
         lbUser1 = new org.edisoncor.gui.label.LabelMetric();
         lb_tipo2 = new org.edisoncor.gui.label.LabelMetric();
@@ -65,31 +78,31 @@ public class frmLogin extends javax.swing.JFrame {
         labelMetric3.setText("Usuario:");
         labelMetric3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jButton1.setText("*");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setText("*");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
 
-        lb_user1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
-        lb_user1.addMouseListener(new java.awt.event.MouseAdapter() {
+        imagen_user1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
+        imagen_user1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_user1MouseClicked(evt);
+                imagen_user1MouseClicked(evt);
             }
         });
 
-        lb_user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
-        lb_user2.addMouseListener(new java.awt.event.MouseAdapter() {
+        imagen_user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
+        imagen_user2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_user2MouseClicked(evt);
+                imagen_user2MouseClicked(evt);
             }
         });
 
-        lb_user3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
-        lb_user3.addMouseListener(new java.awt.event.MouseAdapter() {
+        imagen_user3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png"))); // NOI18N
+        imagen_user3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_user3MouseClicked(evt);
+                imagen_user3MouseClicked(evt);
             }
         });
 
@@ -119,7 +132,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(lb_user2)
+                        .addComponent(imagen_user2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_tipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,12 +146,12 @@ public class frmLogin extends javax.swing.JFrame {
                             .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                             .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(139, 139, 139))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(lb_user3)
+                                .addComponent(imagen_user3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lb_tipo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +159,7 @@ public class frmLogin extends javax.swing.JFrame {
                                         .addGap(33, 33, 33)
                                         .addComponent(lbUser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(lb_user1)
+                                .addComponent(imagen_user1)
                                 .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lb_tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +178,7 @@ public class frmLogin extends javax.swing.JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_user1)
+                            .addComponent(imagen_user1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addComponent(lb_tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
@@ -174,9 +187,8 @@ public class frmLogin extends javax.swing.JFrame {
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addComponent(lb_user2))
+                                .addComponent(imagen_user2))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lb_tipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(lbUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,12 +202,12 @@ public class frmLogin extends javax.swing.JFrame {
                         .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lb_user3))
+                        .addComponent(imagen_user3))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lb_tipo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,60 +236,120 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        lb_user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png")));
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
         try {
-            Datos datos = new Datos();
-            
-            int i = 1;
-            
-            String user[] = new String[4];
-            
-            ResultSet rs = datos.getUsuarios();
-            
-            while(rs.next()){
-                
-                user[i] = rs.getString("nom_usuario");
-                
-                i++;
+            Datos misDatos = new Datos();
+
+            String clave = new String(txtClave.getPassword());
+            ResultSet rs = misDatos.validarUsuario(txtUsuario.getText(), clave);
+            if (rs.next() == false) {
+                JOptionPane.showMessageDialog(rootPane, "Usuario o Clave incorrectos");
+                txtUsuario.setText("");
+                txtClave.setText("");
+                txtUsuario.requestFocusInWindow();
+                return;
             }
-            
-            lb_tipo1.setText("Administrador");
-            lb_tipo2.setText("Administrador");
-            lb_tipo3.setText("Administrador");
-            
-            lbUser1.setText(user[1]);
-            lbUser2.setText(user[2]);
-            lbUser3.setText(user[3]);
-            
+
+            frmPrincipal miPrincipal = new frmPrincipal();
+            setVisible(false);
+            miPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            miPrincipal.setLocationRelativeTo(null);
+            miPrincipal.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        imagen_user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/100px-Icon-user.png")));
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        try {
+            Datos datos = new Datos();
+
+            int i = 1;
+
+            ArrayList<Image> lista = new ArrayList();
+
+            String user[] = new String[4];
+
+            ImageIcon icon = new ImageIcon();
+
+            ResultSet rs = datos.getUsuarios();
+
+            while (rs.next()) {
+
+                user[i] = rs.getString("nom_usuario");
+
+                /* Me traigo el binario tipo blob*/
+                Blob blob = rs.getBlob("imagen");
+
+                /* Lo guardo en un array de tipo byte para ponerlo convertir a imagen*/
+                byte[] data = blob.getBytes(1, (int) blob.length());
+                BufferedImage img = null;
+
+                /* Con ImageIO.read lee los binario y me retorna la imagen o un
+                BufferedImage */
+                img = ImageIO.read(new ByteArrayInputStream(data));
+
+                /* Agrego la iamgen a la lista */
+                lista.add(img);
+
+                /* JOptionPane.showMessageDialog(rootPane, "aloha");
+                    Image image = ImageIO.read(getClass().getResource("/Imagenes/100px-Icon-user.png"));
+                    lista.add(image); */
+                i++;
+
+            }
+
+            /* Seteo la imagen del usuario */
+            icon = new ImageIcon(lista.get(0).getScaledInstance(imagen_user1.getWidth(),
+                    imagen_user1.getHeight(), Image.SCALE_DEFAULT));
+            imagen_user1.setIcon(icon);
+
+//            icon = new ImageIcon(lista.get(1).getScaledInstance(imagen_user2.getWidth(),
+//                    imagen_user2.getHeight(), Image.SCALE_DEFAULT));
+//            imagen_user1.setIcon(icon);
+//
+//            icon = new ImageIcon(lista.get(2).getScaledInstance(imagen_user3.getWidth(),
+//                    imagen_user3.getHeight(), Image.SCALE_DEFAULT));
+//            imagen_user1.setIcon(icon);
+
+
+            /* Seteo el tipo de usuario */
+            lb_tipo1.setText("Administrador");
+            lb_tipo2.setText("Administrador");
+            lb_tipo3.setText("Administrador");
+
+            /* Seteo el nombre de usuario */
+            lbUser1.setText(user[1]);
+            lbUser2.setText(user[2]);
+            lbUser3.setText(user[3]);
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_formWindowOpened
 
-    private void lb_user1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_user1MouseClicked
-        
+    private void imagen_user1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagen_user1MouseClicked
+
         txtUsuario.setText(lbUser1.getText());
-        
-    }//GEN-LAST:event_lb_user1MouseClicked
 
-    private void lb_user2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_user2MouseClicked
-         
+    }//GEN-LAST:event_imagen_user1MouseClicked
+
+    private void imagen_user2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagen_user2MouseClicked
+
         txtUsuario.setText(lbUser2.getText());
-        
-    }//GEN-LAST:event_lb_user2MouseClicked
 
-    private void lb_user3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_user3MouseClicked
-        
+    }//GEN-LAST:event_imagen_user2MouseClicked
+
+    private void imagen_user3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagen_user3MouseClicked
+
         txtUsuario.setText(lbUser3.getText());
-        
-    }//GEN-LAST:event_lb_user3MouseClicked
+
+    }//GEN-LAST:event_imagen_user3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,7 +387,10 @@ public class frmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JLabel imagen_user1;
+    private javax.swing.JLabel imagen_user2;
+    private javax.swing.JLabel imagen_user3;
     private org.edisoncor.gui.label.LabelMetric labelMetric2;
     private org.edisoncor.gui.label.LabelMetric labelMetric3;
     private org.edisoncor.gui.label.LabelMetric lbUser1;
@@ -324,9 +399,6 @@ public class frmLogin extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelMetric lb_tipo1;
     private org.edisoncor.gui.label.LabelMetric lb_tipo2;
     private org.edisoncor.gui.label.LabelMetric lb_tipo3;
-    private javax.swing.JLabel lb_user1;
-    private javax.swing.JLabel lb_user2;
-    private javax.swing.JLabel lb_user3;
     private org.edisoncor.gui.panel.Panel panel1;
     private org.edisoncor.gui.passwordField.PasswordFieldRoundIcon txtClave;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtUsuario;

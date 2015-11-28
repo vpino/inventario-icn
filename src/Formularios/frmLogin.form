@@ -57,7 +57,7 @@
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="lb_user2" min="-2" max="-2" attributes="0"/>
+                          <Component id="imagen_user2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lb_tipo2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -74,13 +74,13 @@
                               <Component id="txtClave" linkSize="2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="btnIngresar" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lb_user3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="imagen_user3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lb_tipo3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lb_user1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="imagen_user1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lb_tipo1" min="-2" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lb_user1" min="-2" max="-2" attributes="0"/>
+                              <Component id="imagen_user1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lb_tipo1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -126,10 +126,9 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="lb_user2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="imagen_user2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="lb_tipo2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="lbUser2" min="-2" max="-2" attributes="0"/>
@@ -146,7 +145,7 @@
                           <Component id="labelMetric2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton1" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="btnIngresar" min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="txtClave" linkSize="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -154,7 +153,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lb_user3" min="-2" max="-2" attributes="0"/>
+                          <Component id="imagen_user3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -189,42 +188,42 @@
         </Component>
         <Component class="org.edisoncor.gui.passwordField.PasswordFieldRoundIcon" name="txtClave">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnIngresar">
           <Properties>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lb_user1">
+        <Component class="javax.swing.JLabel" name="imagen_user1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/100px-Icon-user.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lb_user1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="imagen_user1MouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lb_user2">
+        <Component class="javax.swing.JLabel" name="imagen_user2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/100px-Icon-user.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lb_user2MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="imagen_user2MouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lb_user3">
+        <Component class="javax.swing.JLabel" name="imagen_user3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/100px-Icon-user.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lb_user3MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="imagen_user3MouseClicked"/>
           </Events>
         </Component>
         <Component class="org.edisoncor.gui.label.LabelMetric" name="lb_tipo1">
