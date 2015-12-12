@@ -36,6 +36,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mnuArchivoCerrarSesion = new javax.swing.JMenuItem();
         mnuMovimientos = new javax.swing.JMenu();
         mnuMovimientosGestionEq = new javax.swing.JMenuItem();
+        mnuMovimientosDiagnosticar = new javax.swing.JMenuItem();
         mnuConsultas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,13 +73,21 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         mnuMovimientos.setText("Movimientos");
 
-        mnuMovimientosGestionEq.setText("Gestion de Equipos");
+        mnuMovimientosGestionEq.setText("Registro de Equipos");
         mnuMovimientosGestionEq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuMovimientosGestionEqActionPerformed(evt);
             }
         });
         mnuMovimientos.add(mnuMovimientosGestionEq);
+
+        mnuMovimientosDiagnosticar.setText("Diagnosticar ");
+        mnuMovimientosDiagnosticar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMovimientosDiagnosticarActionPerformed(evt);
+            }
+        });
+        mnuMovimientos.add(mnuMovimientosDiagnosticar);
 
         jMenuBar1.add(mnuMovimientos);
 
@@ -116,6 +125,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         user.setVisible(true);
 
     }//GEN-LAST:event_mnuArchivoAddUsuarioActionPerformed
+
+    private void mnuMovimientosDiagnosticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimientosDiagnosticarActionPerformed
+
+        frmDiagnostico diag = new frmDiagnostico();
+        diag.setLocationRelativeTo(null);
+        diag.setVisible(true);
+        
+    }//GEN-LAST:event_mnuMovimientosDiagnosticarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +178,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuArhivoUpdateUsuario;
     private javax.swing.JMenu mnuConsultas;
     private javax.swing.JMenu mnuMovimientos;
+    private javax.swing.JMenuItem mnuMovimientosDiagnosticar;
     private javax.swing.JMenuItem mnuMovimientosGestionEq;
     private org.edisoncor.gui.panel.Panel panel1;
     // End of variables declaration//GEN-END:variables

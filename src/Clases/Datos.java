@@ -25,7 +25,7 @@ public class Datos {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost/icn";
-            con = DriverManager.getConnection(url, "root", "");
+            con = DriverManager.getConnection(url, "root", "11");
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +37,7 @@ public class Datos {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost/icn";
-            con = DriverManager.getConnection(url, "root", "");
+            con = DriverManager.getConnection(url, "root", "11");
             return con;
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,9 +96,9 @@ public class Datos {
             ps.executeUpdate();
 
             con.commit();
-            
+
             return true;
-            
+
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -136,9 +136,9 @@ public class Datos {
             ps.executeUpdate();
 
             con.commit();
-            
+
             return true;
-            
+
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -214,15 +214,47 @@ public class Datos {
         }
     }
 
-    public ResultSet getGerentes(int usuario) {
+    public ResultSet getEquipos() {
 
         try {
-            String sql = "SELECT personal.id_personal,  personal.nom_per, personal.ape_per, personal.cargo "
-                    + "FROM personal "
-                    + "INNER JOIN cargo ON personal.cargo = cargo.cargo "
-                    + "WHERE usuarios.usuario = '" + usuario + "'";
+            String sql = "SELECT * FROM equipos ";
 
             Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public ResultSet getEquipos(int pagIni, int pagFinal) {
+
+        try {
+            String sql = "SELECT * FROM equipos "
+                    + " WHERE id >= " + pagIni + ""
+                    + " AND id <= " + pagFinal + "";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public ResultSet getEquipos(int pagIni, int pagFinal, String busqueda) {
+
+        try {
+            String sql = "SELECT * FROM equipos "
+                    + " WHERE id >= " + pagIni + ""
+                    + " AND id <= " + pagFinal + ""
+                    + " AND id_equipo LIKE '%" + busqueda + "%'";
+
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            
             ResultSet rs = st.executeQuery(sql);
             return rs;
         } catch (SQLException ex) {

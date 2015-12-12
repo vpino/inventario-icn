@@ -268,13 +268,14 @@ public class frmLogin extends javax.swing.JFrame {
         try {
             Datos datos = new Datos();
 
-            int i = 1;
+            int i = 0;
 
             ArrayList<Image> lista = new ArrayList();
 
             String user[] = new String[4];
 
             ImageIcon icon = new ImageIcon();
+            ImageIcon icon2 = new ImageIcon();
 
             ResultSet rs = datos.getUsuarios();
 
@@ -285,7 +286,7 @@ public class frmLogin extends javax.swing.JFrame {
                 /* Me traigo el binario tipo blob*/
                 Blob blob = rs.getBlob("imagen");
 
-                /* Lo guardo en un array de tipo byte para ponerlo convertir a imagen*/
+                /* Lo guardo en un array de tipo byte para poderlo convertir a imagen*/
                 byte[] data = blob.getBytes(1, (int) blob.length());
                 BufferedImage img = null;
 
@@ -294,7 +295,7 @@ public class frmLogin extends javax.swing.JFrame {
                 img = ImageIO.read(new ByteArrayInputStream(data));
 
                 /* Agrego la iamgen a la lista */
-                lista.add(img);
+                lista.add(i, img);
 
                 /* JOptionPane.showMessageDialog(rootPane, "aloha");
                     Image image = ImageIO.read(getClass().getResource("/Imagenes/100px-Icon-user.png"));
@@ -302,19 +303,24 @@ public class frmLogin extends javax.swing.JFrame {
                 i++;
 
             }
-
+            
             /* Seteo la imagen del usuario */
             icon = new ImageIcon(lista.get(0).getScaledInstance(imagen_user1.getWidth(),
                     imagen_user1.getHeight(), Image.SCALE_DEFAULT));
             imagen_user1.setIcon(icon);
 
-//            icon = new ImageIcon(lista.get(1).getScaledInstance(imagen_user2.getWidth(),
-//                    imagen_user2.getHeight(), Image.SCALE_DEFAULT));
-//            imagen_user1.setIcon(icon);
-//
-//            icon = new ImageIcon(lista.get(2).getScaledInstance(imagen_user3.getWidth(),
-//                    imagen_user3.getHeight(), Image.SCALE_DEFAULT));
-//            imagen_user1.setIcon(icon);
+            icon = new ImageIcon(lista.get(1).getScaledInstance(imagen_user2.getWidth(),
+                    imagen_user2.getHeight(), Image.SCALE_DEFAULT));
+            imagen_user2.setIcon(icon);
+
+            icon = new ImageIcon(lista.get(2).getScaledInstance(imagen_user3.getWidth(),
+                    imagen_user3.getHeight(), Image.SCALE_DEFAULT));
+            imagen_user3.setIcon(icon);
+            
+             /* Seteo el nombre de usuario */
+            lbUser1.setText(user[0]);
+            lbUser2.setText(user[1]);
+            lbUser3.setText(user[2]);
 
 
             /* Seteo el tipo de usuario */
@@ -322,10 +328,7 @@ public class frmLogin extends javax.swing.JFrame {
             lb_tipo2.setText("Administrador");
             lb_tipo3.setText("Administrador");
 
-            /* Seteo el nombre de usuario */
-            lbUser1.setText(user[1]);
-            lbUser2.setText(user[2]);
-            lbUser3.setText(user[3]);
+           
 
         } catch (Exception ex) {
             Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);

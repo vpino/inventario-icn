@@ -38,10 +38,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientosGestionEq">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gestion de Equipos"/>
+                <Property name="text" type="java.lang.String" value="Registro de Equipos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientosGestionEqActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientosDiagnosticar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Diagnosticar "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientosDiagnosticarActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
