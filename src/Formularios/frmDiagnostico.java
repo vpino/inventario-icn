@@ -402,38 +402,51 @@ public class frmDiagnostico extends javax.swing.JFrame {
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
 
+        if (Utilidades.objectToInt(tablaDiagnostico.getValueAt(0, 0)) > 0 ){
         /* Cuando el usuario digite en el campo txt Buscar y tabulee
         llenamos la tabla con la busqueda */
         llenarTabla(
-                Utilidades.objectToInt(tablaDiagnostico.getValueAt(9, 0)),
+                Utilidades.objectToInt(tablaDiagnostico.getValueAt(0, 0)),
                 txtBuscar.getText()
         );
+        
+        } else {
+            
+            llenarTabla();
+        }
+        
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tablaDiagnosticoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDiagnosticoMouseClicked
 
         /* Variable que contendra el ID de la fila seleccionada */
-        int s = 0;
+        int s = 0, id = 0;
+        
+        /* Validamos que hallan seleccionado */
+        if (s < 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un equipo");
+            return;
+        }
 
         /* Guardamos el ID de dla fila selecciona en la variable s*/
         s = tablaDiagnostico.getSelectedRow();
 
-        /* Validamos que hallan seleccionado */
-        if (s < 0) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un proyecto");
-            return;
-        }
-
-        /* Pasamos el id de la fila seleccionada 
+        /* Guardamos el id del equipo seleccionado, con el metodo getValueAt
+        El cual nos devuelve un objeto, el cual convertimos a int, con la funcion
+        objetoToInt que nos da la Clase Utilidades */
+        id = Utilidades.objectToInt(tablaDiagnostico.getValueAt(s, 0));
         
-        - Como la funcion getValueAt recibe como parametro, el numero de la fila
-        y el numero de la columna y devuelve como parametro un Objeto y la funcion
-        setId() recibe como parametro un int hay que hacer la conversion de objeto a int.
-        Para eso utilizamos el metodo de la clase Utilidades objetoToString
-        que me transforma un objeto a String.
-
-         */
+        frmEvaluacion evaluacion = new frmEvaluacion();
+        dispose();
+        
+        evaluacion.setID(id);
+        evaluacion.setVisible(true);
+        evaluacion.setLocationRelativeTo(null);
+        
+        
+        
+       
 
     }//GEN-LAST:event_tablaDiagnosticoMouseClicked
 
@@ -444,23 +457,32 @@ public class frmDiagnostico extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
 
         try {
-            int inicio = 0, fin = 0;
+            int inicio = 0, fin = 0, lastRow = 0;
 
-            inicio = Utilidades.objectToInt(tablaDiagnostico.getValueAt(2, 0));
-            fin = inicio + 3;
+            lastRow = tablaDiagnostico.getRowCount();
+            lastRow = lastRow - 1;
+            if (lastRow >= 0) {
 
-            ResultSet rs = datos.getEquipos();
-            rs.last();
+                inicio = Utilidades.objectToInt(tablaDiagnostico.getValueAt(lastRow, 0));
+                fin = inicio + 3;
 
-            int cantFilas = rs.getRow();
+                ResultSet rs = datos.getEquipos();
+                rs.last();
 
-            System.out.println(cantFilas +" " + inicio + " " + fin);
-           
-            if (fin >= cantFilas) {
-                System.out.println("sabe");
-                llenarTabla(inicio, cantFilas);
-            } else {
-                llenarTabla(inicio, fin);
+                int cantFilas = rs.getRow();
+
+                System.out.println("can = " + cantFilas + " inicio= " + inicio + " fin = " + fin);
+
+                if (fin >= cantFilas) {
+
+                    llenarTabla(inicio, cantFilas);
+                }
+
+                if (inicio >= cantFilas) {
+
+                    return;
+                }
+
             }
 
         } catch (SQLException ex) {
@@ -472,21 +494,29 @@ public class frmDiagnostico extends javax.swing.JFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
 
         try {
-            int inicio = 0, fin = 0;
+            int inicio = 0, fin = 0, lastRow =0;
 
-            fin = Utilidades.objectToInt(tablaDiagnostico.getValueAt(0, 0));
-            inicio = fin - 3;
+            lastRow = tablaDiagnostico.getRowCount();
+            lastRow = lastRow - 1;
+           
+            if (lastRow >= 0) {
+                
+                fin = Utilidades.objectToInt(tablaDiagnostico.getValueAt(0, 0));
 
-            ResultSet rs = datos.getEquipos();
+                inicio = fin - 3;
 
-            int cantFilas = rs.getRow() +1 ;
+                ResultSet rs = datos.getEquipos();
 
-            System.out.println(cantFilas);
+                int cantFilas = rs.getRow() + 1;
 
-            if (inicio >= cantFilas) {
-                llenarTabla(inicio, fin);
-            } else {
-                llenarTabla(cantFilas, fin);
+                System.out.println(cantFilas);
+
+                if (inicio >= cantFilas) {
+                    llenarTabla(inicio, fin);
+                } else {
+                    llenarTabla(cantFilas, fin);
+                }
+
             }
 
         } catch (SQLException ex) {

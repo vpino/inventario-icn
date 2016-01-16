@@ -25,7 +25,7 @@ public class Datos {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost/icn";
-            con = DriverManager.getConnection(url, "root", "11");
+            con = DriverManager.getConnection(url, "root", "");
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -219,6 +219,21 @@ public class Datos {
         try {
             String sql = "SELECT * FROM equipos ";
 
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public ResultSet getEquipo(int id) {
+
+        try {
+            String sql = "SELECT * FROM equipos "
+                    + " WHERE id = " + id + "";
+                    
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             return rs;
