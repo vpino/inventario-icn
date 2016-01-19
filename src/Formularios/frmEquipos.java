@@ -291,7 +291,7 @@ public class frmEquipos extends javax.swing.JFrame {
         File qr = new File(RUTA_QR);
         File equi = new File(ruta);
 
-        Equipo equipo = new Equipo(
+       /* Equipo equipo = new Equipo(
                 data.toString(),
                 qr,
                 dchFecha.getDate(),
@@ -308,6 +308,7 @@ public class frmEquipos extends javax.swing.JFrame {
                     + "por favor intentelo mas tarde");
 
         }
+        */
 
         /* Limpiamos los campos */
         labelQR.setText("Imagen Preview");

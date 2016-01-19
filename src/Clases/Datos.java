@@ -25,7 +25,7 @@ public class Datos {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost/icn";
-            con = DriverManager.getConnection(url, "root", "");
+            con = DriverManager.getConnection(url, "root", "11");
         } catch (Exception ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,9 +104,10 @@ public class Datos {
             return false;
         }
     }
-
+   
     /* Funcion para insertar un equipo a la base de datos la cual recibe
      como parametro un OBJETO de la clase Equipo */
+    
     public boolean agregarEquipo(Equipo equipo) {
         try {
             /* Definimos el codigo sql que queremos ejecutar. En este caso es un
@@ -123,13 +124,13 @@ public class Datos {
 
             FileInputStream qr = new FileInputStream(equipo.getQr());
 
-            FileInputStream equi = new FileInputStream(equipo.getEquipo());
+            //FileInputStream equi = new FileInputStream(equipo.getEquipo());
 
             ps.setString(1, equipo.getId());
             ps.setBinaryStream(2, qr, (int) equipo.getQr().length());
             ps.setString(3, Utilidades.formateDate(equipo.getFecha()));
-            ps.setString(4, equipo.getFalla());
-            ps.setBinaryStream(5, equi, (int) equipo.getEquipo().length());
+            //ps.setString(4, equipo.getFalla());
+            //ps.setBinaryStream(5, equi, (int) equipo.getEquipo().length());
 
             /* Una vez creado el statement el cuadrito mandamos a ejecutar el 
              codigo sql que definimos en la variable sql. */
@@ -191,6 +192,22 @@ public class Datos {
             st.executeUpdate(sql);
 
             return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean getCliente(String ci) {
+
+        try {
+            String sql = "SELECT * FROM cliente "
+                    + "WHERE ci_cliente  = '" + ci + "'";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs.next();
+
         } catch (SQLException ex) {
             Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
             return false;

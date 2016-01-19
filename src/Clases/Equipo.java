@@ -7,21 +7,20 @@ import java.util.Date;
  *
  * @author victor
  */
-
 public class Equipo {
-    
+
     private String id;
     private File qr;
     private Date fecha;
-    private String falla;
-    private File equipo;
+    private File pictureOut;
+    private File pictureInside;
 
-    public Equipo(String id, File qr, Date fecha, String falla, File equipo) {
+    public Equipo(String id, File qr, Date fecha, File pictureOut, File pictureInside) {
         this.id = id;
         this.qr = qr;
         this.fecha = fecha;
-        this.falla = falla;
-        this.equipo = equipo;
+        this.pictureOut = pictureOut;
+        this.pictureInside = pictureInside;
     }
 
     public String getId() {
@@ -48,22 +47,21 @@ public class Equipo {
         this.fecha = fecha;
     }
 
-    public String getFalla() {
-        return falla;
+    public File getPictureOut() {
+        return pictureOut;
     }
 
-    public void setFalla(String falla) {
-        this.falla = falla;
+    public void setPictureOut(File pictureOut) {
+        this.pictureOut = pictureOut;
     }
 
-    public File getEquipo() {
-        return equipo;
+    public File getPictureInside() {
+        return pictureInside;
     }
 
-    public void setEquipo(File equipo) {
-        this.equipo = equipo;
+    public void setPictureInside(File pictureInside) {
+        this.pictureInside = pictureInside;
     }
-    
     
     
 }
