@@ -79,8 +79,27 @@ public class frmEquipo extends javax.swing.JFrame {
         btnAtras = new org.edisoncor.gui.button.ButtonAction();
         labelMetric13 = new org.edisoncor.gui.label.LabelMetric();
         panelDiagnostico = new org.edisoncor.gui.panel.Panel();
+        labelMetric14 = new org.edisoncor.gui.label.LabelMetric();
+        labelMetric15 = new org.edisoncor.gui.label.LabelMetric();
+        labelMetric16 = new org.edisoncor.gui.label.LabelMetric();
+        txtPlacaBase = new org.edisoncor.gui.textField.TextFieldRoundIcon();
+        txtProcesador = new org.edisoncor.gui.textField.TextFieldRoundIcon();
+        txtFuente = new org.edisoncor.gui.textField.TextFieldRoundIcon();
+        txtMemoria = new org.edisoncor.gui.textField.TextFieldRoundIcon();
+        labelMetric17 = new org.edisoncor.gui.label.LabelMetric();
+        labelMetric18 = new org.edisoncor.gui.label.LabelMetric();
+        txtDisco = new org.edisoncor.gui.textField.TextFieldRoundIcon();
+        labelMetric19 = new org.edisoncor.gui.label.LabelMetric();
+        labelMetric20 = new org.edisoncor.gui.label.LabelMetric();
+        cmbRespaldo = new org.edisoncor.gui.comboBox.ComboBoxRound();
+        labelMetric21 = new org.edisoncor.gui.label.LabelMetric();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        areaFalla = new javax.swing.JTextArea();
+        btnAtrasDetalle = new org.edisoncor.gui.button.ButtonAction();
+        btnAgregarDetalle = new org.edisoncor.gui.button.ButtonAction();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Equipo");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -246,29 +265,32 @@ public class frmEquipo extends javax.swing.JFrame {
                                 .addComponent(labelQR, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelEquipoLayout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addGroup(panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelMetric9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelMetric10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelMetric9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelOutside, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelEquipoLayout.createSequentialGroup()
-                                        .addComponent(txtOutside, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnAbrirOutside)))))
-                        .addGap(40, 40, 40)
-                        .addGroup(panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEquipoLayout.createSequentialGroup()
-                                .addComponent(labelMetric8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dchFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEquipoLayout.createSequentialGroup()
-                                .addComponent(labelMetric11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtInside, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAbrirInside))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEquipoLayout.createSequentialGroup()
+                                .addComponent(txtOutside, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAbrirOutside))
+                            .addGroup(panelEquipoLayout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(labelMetric10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelOutside, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEquipoLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEquipoLayout.createSequentialGroup()
+                                        .addComponent(labelMetric8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(dchFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEquipoLayout.createSequentialGroup()
+                                        .addComponent(labelMetric11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtInside, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnAbrirInside))))
+                            .addGroup(panelEquipoLayout.createSequentialGroup()
+                                .addGap(91, 91, 91)
                                 .addComponent(labelMetric12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(labelInside, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -314,15 +336,116 @@ public class frmEquipo extends javax.swing.JFrame {
 
         panelTop.addTab("Equipo", panelEquipo);
 
+        labelMetric14.setText("Detalles del Equipo");
+        labelMetric14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+
+        labelMetric15.setText("Placa Base:");
+
+        labelMetric16.setText("Procesador:");
+
+        labelMetric17.setText("Fuente:");
+
+        labelMetric18.setText("Memoria:");
+
+        labelMetric19.setText("Disco Duro:");
+
+        labelMetric20.setText("Respaldo:");
+
+        labelMetric21.setText("Falla:");
+
+        areaFalla.setColumns(20);
+        areaFalla.setRows(5);
+        jScrollPane1.setViewportView(areaFalla);
+
+        btnAtrasDetalle.setText("Atras");
+
+        btnAgregarDetalle.setText("Agregar");
+
         javax.swing.GroupLayout panelDiagnosticoLayout = new javax.swing.GroupLayout(panelDiagnostico);
         panelDiagnostico.setLayout(panelDiagnosticoLayout);
         panelDiagnosticoLayout.setHorizontalGroup(
             panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 773, Short.MAX_VALUE)
+            .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                    .addComponent(labelMetric19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                    .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                            .addComponent(labelMetric18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                            .addComponent(labelMetric15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPlacaBase, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                            .addComponent(labelMetric16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtProcesador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDiagnosticoLayout.createSequentialGroup()
+                                            .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(labelMetric20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(labelMetric17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cmbRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                                .addComponent(labelMetric21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(btnAtrasDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnAgregarDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(119, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDiagnosticoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelMetric14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(287, 287, 287))
         );
         panelDiagnosticoLayout.setVerticalGroup(
             panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGroup(panelDiagnosticoLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(labelMetric14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMetric16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMetric15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlacaBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProcesador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMetric17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMetric18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMetric20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMetric19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDisco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelMetric21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAtrasDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         panelTop.addTab("Diagnostico", panelDiagnostico);
@@ -520,20 +643,33 @@ public class frmEquipo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaFalla;
     private javax.swing.JButton btnAbrirInside;
     private javax.swing.JButton btnAbrirOutside;
+    private org.edisoncor.gui.button.ButtonAction btnAgregarDetalle;
     private org.edisoncor.gui.button.ButtonAction btnAtras;
+    private org.edisoncor.gui.button.ButtonAction btnAtrasDetalle;
     private org.edisoncor.gui.button.ButtonAction btnCancelar;
     private org.edisoncor.gui.button.ButtonAction btnSiguiente;
     private org.edisoncor.gui.button.ButtonAction btnSiguienteEquipo;
+    private org.edisoncor.gui.comboBox.ComboBoxRound cmbRespaldo;
     private com.toedter.calendar.JDateChooser dchFecha;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelInside;
     private org.edisoncor.gui.label.LabelMetric labelMetric1;
     private org.edisoncor.gui.label.LabelMetric labelMetric10;
     private org.edisoncor.gui.label.LabelMetric labelMetric11;
     private org.edisoncor.gui.label.LabelMetric labelMetric12;
     private org.edisoncor.gui.label.LabelMetric labelMetric13;
+    private org.edisoncor.gui.label.LabelMetric labelMetric14;
+    private org.edisoncor.gui.label.LabelMetric labelMetric15;
+    private org.edisoncor.gui.label.LabelMetric labelMetric16;
+    private org.edisoncor.gui.label.LabelMetric labelMetric17;
+    private org.edisoncor.gui.label.LabelMetric labelMetric18;
+    private org.edisoncor.gui.label.LabelMetric labelMetric19;
     private org.edisoncor.gui.label.LabelMetric labelMetric2;
+    private org.edisoncor.gui.label.LabelMetric labelMetric20;
+    private org.edisoncor.gui.label.LabelMetric labelMetric21;
     private org.edisoncor.gui.label.LabelMetric labelMetric3;
     private org.edisoncor.gui.label.LabelMetric labelMetric4;
     private org.edisoncor.gui.label.LabelMetric labelMetric5;
@@ -550,10 +686,15 @@ public class frmEquipo extends javax.swing.JFrame {
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader panelTop;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtApellidos;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtCedula;
+    private org.edisoncor.gui.textField.TextFieldRoundIcon txtDisco;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtEmail;
+    private org.edisoncor.gui.textField.TextFieldRoundIcon txtFuente;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtInside;
+    private org.edisoncor.gui.textField.TextFieldRoundIcon txtMemoria;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtNombres;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtOutside;
+    private org.edisoncor.gui.textField.TextFieldRoundIcon txtPlacaBase;
+    private org.edisoncor.gui.textField.TextFieldRoundIcon txtProcesador;
     private org.edisoncor.gui.textField.TextFieldRoundIcon txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
