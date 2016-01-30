@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class Datos {
 
-    private Connection con;
+    public Connection con;
 
     public Datos() {
 
@@ -78,7 +78,7 @@ public class Datos {
              insert a la tabla usuarios */
             String sql = "INSERT INTO usuarios (nom_usuario, clave, imagen) VALUES(?,?,?)";
 
-            con.setAutoCommit(false);
+            //con.setAutoCommit(false);
 
             /* El PreparedStatement cree un cuadro donde se puede insertar codigo
              sql, el statement se podria decir que es el cuadro en blanco que
@@ -95,7 +95,7 @@ public class Datos {
              codigo sql que definimos en la variable sql. */
             ps.executeUpdate();
 
-            con.commit();
+            //con.commit();
 
             return true;
 
@@ -104,18 +104,54 @@ public class Datos {
             return false;
         }
     }
-   
+
+    /* Funcion para insertar un cliente a la base de datos la cual recibe
+     como parametro un OBJETO de la clase Cliente */
+    public boolean agregarCliente(Cliente cliente) {
+        try {
+            /* Definimos el codigo sql que queremos ejecutar. En este caso es un
+             insert a la tabla cliente */
+            String sql = "INSERT INTO cliente (nom_cli, ape_cli, ce_cli, tel_cli, email_cli)"
+                    + " VALUES(?,?,?,?,?)";
+
+            //con.setAutoCommit(false);
+
+            /* El PreparedStatement cree un cuadro donde se puede insertar codigo
+             sql, el statement se podria decir que es el cuadro en blanco que
+             te da el phpmyadmin para insertar codigo sql. */
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, cliente.getNombres());
+            ps.setString(2, cliente.getApellidos());
+            ps.setString(3, cliente.getCedula());
+            ps.setString(4, cliente.getTelefono());
+            ps.setString(5, cliente.getEmail());
+
+
+            /* Una vez creado el statement el cuadrito mandamos a ejecutar el 
+             codigo sql que definimos en la variable sql. */
+            ps.executeUpdate();
+
+            //con.commit();
+
+            return true;
+
+        } catch (Exception ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     /* Funcion para insertar un equipo a la base de datos la cual recibe
      como parametro un OBJETO de la clase Equipo */
-    
     public boolean agregarEquipo(Equipo equipo) {
         try {
             /* Definimos el codigo sql que queremos ejecutar. En este caso es un
              insert a la tabla usuarios */
-            String sql = "INSERT INTO equipos (id_equipo, equipo_qr, fecha, falla, equipo)"
+            String sql = "INSERT INTO equipo (id_equipo, equipo_qr, fecha, pic_out, pic_inside)"
                     + " VALUES(?,?,?,?,?)";
 
-            con.setAutoCommit(false);
+            //con.setAutoCommit(false);
 
             /* El PreparedStatement cree un cuadro donde se puede insertar codigo
              sql, el statement se podria decir que es el cuadro en blanco que
@@ -123,20 +159,63 @@ public class Datos {
             PreparedStatement ps = con.prepareStatement(sql);
 
             FileInputStream qr = new FileInputStream(equipo.getQr());
-
-            //FileInputStream equi = new FileInputStream(equipo.getEquipo());
+            FileInputStream pic_out = new FileInputStream(equipo.getPictureOut());
+            FileInputStream pic_inside = new FileInputStream(equipo.getPictureInside());
 
             ps.setString(1, equipo.getId());
             ps.setBinaryStream(2, qr, (int) equipo.getQr().length());
             ps.setString(3, Utilidades.formateDate(equipo.getFecha()));
-            //ps.setString(4, equipo.getFalla());
-            //ps.setBinaryStream(5, equi, (int) equipo.getEquipo().length());
+            ps.setBinaryStream(4, pic_out, (int) equipo.getPictureOut().length());
+            ps.setBinaryStream(5, pic_inside, (int) equipo.getPictureInside().length());
+
 
             /* Una vez creado el statement el cuadrito mandamos a ejecutar el 
              codigo sql que definimos en la variable sql. */
             ps.executeUpdate();
 
-            con.commit();
+            //con.commit();
+
+            return true;
+
+        } catch (Exception ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    /* Funcion para insertar el detalle del equipo a la base de datos la cual recibe
+     como parametro un OBJETO de la clase DetailEquipo */
+    public boolean agregarDetalle(DetailEquipo detalle) {
+        try {
+            /* Definimos el codigo sql que queremos ejecutar. En este caso es un
+             insert a la tabla detalle_equi */
+            String sql = "INSERT INTO detalle_equi (id_equipo, ce_cli, placa_base,"
+                    + " procesador, memoria, hdd, fuentep, respaldo, falla)"
+                    + " VALUES(?,?,?,?,?,?,?,?,?)";
+
+            //con.setAutoCommit(false);
+
+            /* El PreparedStatement cree un cuadro donde se puede insertar codigo
+             sql, el statement se podria decir que es el cuadro en blanco que
+             te da el phpmyadmin para insertar codigo sql. */
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, detalle.getId_equipo());
+            ps.setString(2, detalle.getCi_cliente());
+            ps.setString(3, detalle.getPlaca_base());
+            ps.setString(4, detalle.getProcesador());
+            ps.setString(5, detalle.getMemoria());
+            ps.setString(6, detalle.getHdd());
+            ps.setString(7, detalle.getFuentep());
+            ps.setString(8, detalle.getRespaldo());
+            ps.setString(9, detalle.getFalla());
+           
+
+            /* Una vez creado el statement el cuadrito mandamos a ejecutar el 
+             codigo sql que definimos en la variable sql. */
+            ps.executeUpdate();
+
+            //con.commit();
 
             return true;
 
@@ -197,7 +276,7 @@ public class Datos {
             return false;
         }
     }
-    
+
     public boolean getCliente(String ci) {
 
         try {
@@ -244,13 +323,13 @@ public class Datos {
             return null;
         }
     }
-    
+
     public ResultSet getEquipo(int id) {
 
         try {
             String sql = "SELECT * FROM equipos "
                     + " WHERE id = " + id + "";
-                    
+
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             return rs;
@@ -259,7 +338,7 @@ public class Datos {
             return null;
         }
     }
-    
+
     public ResultSet getEquipos(int pagIni, int pagFinal) {
 
         try {
@@ -286,7 +365,7 @@ public class Datos {
 
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-            
+
             ResultSet rs = st.executeQuery(sql);
             return rs;
         } catch (SQLException ex) {

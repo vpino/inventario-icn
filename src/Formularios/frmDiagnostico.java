@@ -437,12 +437,12 @@ public class frmDiagnostico extends javax.swing.JFrame {
         objetoToInt que nos da la Clase Utilidades */
         id = Utilidades.objectToInt(tablaDiagnostico.getValueAt(s, 0));
         
-        frmEvaluacion evaluacion = new frmEvaluacion();
-        dispose();
+        frmDictamen dictamen = new frmDictamen();
+        this.dispose();
         
-        evaluacion.setID(id);
-        evaluacion.setVisible(true);
-        evaluacion.setLocationRelativeTo(null);
+        dictamen.setID(id);
+        dictamen.setVisible(true);
+        dictamen.setLocationRelativeTo(null);
         
         
         

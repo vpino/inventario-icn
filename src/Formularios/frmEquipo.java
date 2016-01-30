@@ -1,8 +1,16 @@
 package Formularios;
 
+import Clases.Cliente;
 import Clases.Datos;
+import Clases.DetailEquipo;
+import Clases.Equipo;
+import Clases.Qr;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -106,6 +114,8 @@ public class frmEquipo extends javax.swing.JFrame {
             }
         });
 
+        panelTop.setEnabled(false);
+
         labelMetric1.setText("Registro del Cliente");
         labelMetric1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
@@ -199,6 +209,8 @@ public class frmEquipo extends javax.swing.JFrame {
 
         panelTop.addTab("Cliente", panelCliente);
 
+        panelEquipo.setEnabled(false);
+
         labelMetric7.setText("Codigo QR:");
 
         labelQR.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,8 +250,18 @@ public class frmEquipo extends javax.swing.JFrame {
         labelMetric12.setText("Imagen:");
 
         btnSiguienteEquipo.setText("Siguiente");
+        btnSiguienteEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteEquipoActionPerformed(evt);
+            }
+        });
 
         btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         labelMetric13.setText("Registro del Equipo");
         labelMetric13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -336,6 +358,8 @@ public class frmEquipo extends javax.swing.JFrame {
 
         panelTop.addTab("Equipo", panelEquipo);
 
+        panelDiagnostico.setEnabled(false);
+
         labelMetric14.setText("Detalles del Equipo");
         labelMetric14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
@@ -351,6 +375,8 @@ public class frmEquipo extends javax.swing.JFrame {
 
         labelMetric20.setText("Respaldo:");
 
+        cmbRespaldo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+
         labelMetric21.setText("Falla:");
 
         areaFalla.setColumns(20);
@@ -358,8 +384,18 @@ public class frmEquipo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(areaFalla);
 
         btnAtrasDetalle.setText("Atras");
+        btnAtrasDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasDetalleActionPerformed(evt);
+            }
+        });
 
         btnAgregarDetalle.setText("Agregar");
+        btnAgregarDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDetalleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDiagnosticoLayout = new javax.swing.GroupLayout(panelDiagnostico);
         panelDiagnostico.setLayout(panelDiagnosticoLayout);
@@ -403,12 +439,13 @@ public class frmEquipo extends javax.swing.JFrame {
                                             .addComponent(labelMetric16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(labelMetric14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelDiagnosticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtProcesador, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                        .addComponent(txtFuente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDiagnosticoLayout.createSequentialGroup()
-                                        .addComponent(cmbRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(114, 114, 114))
-                                    .addComponent(txtProcesador, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                                    .addComponent(txtFuente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(cmbRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(146, 146, 146)))))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         panelDiagnosticoLayout.setVerticalGroup(
@@ -474,6 +511,18 @@ public class frmEquipo extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
+        Qr qr = new Qr();
+
+        data = qr.codigoRamdon();
+
+        String ruta_imagen = qr.generarQR(data.toString());
+
+        Image preview = Toolkit.getDefaultToolkit().getImage(ruta_imagen);
+
+        ImageIcon icon = new ImageIcon(preview.getScaledInstance(labelQR.getWidth(),
+                labelQR.getHeight(), Image.SCALE_DEFAULT));
+
+        labelQR.setIcon(icon);
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -534,6 +583,7 @@ public class frmEquipo extends javax.swing.JFrame {
         }
 
         panelTop.setSelectedComponent(panelEquipo);
+        panelCliente.setEnabled(false);
         panelEquipo.setEnabled(true);
 
 
@@ -601,8 +651,160 @@ public class frmEquipo extends javax.swing.JFrame {
                 labelInside.setIcon(icon);
             }
         }
-        
+
     }//GEN-LAST:event_btnAbrirInsideActionPerformed
+
+    private void btnSiguienteEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteEquipoActionPerformed
+
+        /* Validaciones */
+        if (labelQR.getIcon() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar el codigo QR");
+            labelQR.requestFocusInWindow();
+            return;
+        }
+
+        if (dchFecha.getDate() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar la fecha");
+            dchFecha.requestFocusInWindow();
+            return;
+        }
+
+        if (labelOutside.getIcon() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar la imagen del equipo");
+            labelOutside.requestFocusInWindow();
+            return;
+        }
+
+        if (labelInside.getIcon() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar la imagen del hardware del equipo");
+            labelInside.requestFocusInWindow();
+            return;
+        }
+
+        panelTop.setSelectedComponent(panelDiagnostico);
+        panelEquipo.setEnabled(false);
+        panelDiagnostico.setEnabled(true);
+
+
+    }//GEN-LAST:event_btnSiguienteEquipoActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+
+        panelTop.setSelectedComponent(panelCliente);
+        panelEquipo.setEnabled(false);
+        panelCliente.setEnabled(true);
+
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnAtrasDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDetalleActionPerformed
+
+        panelTop.setSelectedComponent(panelEquipo);
+        panelDiagnostico.setEnabled(false);
+        panelEquipo.setEnabled(true);
+
+    }//GEN-LAST:event_btnAtrasDetalleActionPerformed
+
+    private void btnAgregarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDetalleActionPerformed
+
+        try {
+            /* Instanciamos un objeto de la Clase Datos */
+            Datos datos = new Datos();
+
+            /* Validaciones */
+            if (txtPlacaBase.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Debe digitar un el nombre de la tarjeta madre");
+                txtPlacaBase.requestFocusInWindow();
+                return;
+            }
+
+            if (txtProcesador.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Debe ingresar el nombre del procesador");
+                txtProcesador.requestFocusInWindow();
+                return;
+            }
+
+            if (txtMemoria.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Debe ingresar las memorias que posee el equipo");
+                txtMemoria.requestFocusInWindow();
+                return;
+            }
+
+            if (txtFuente.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Debe ingresar la fuente de poder que posee el equipo");
+                txtFuente.requestFocusInWindow();
+                return;
+            }
+
+            if (txtDisco.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Debe ingresar el disco duro que posee el equipo");
+                txtDisco.requestFocusInWindow();
+                return;
+            }
+
+            /* Llenamos el objeto cliente */
+            Cliente cliente = new Cliente(
+                    txtNombres.getText(),
+                    txtApellidos.getText(),
+                    txtCedula.getText(),
+                    txtTelefono.getText(),
+                    txtEmail.getText());
+
+            /* Llenamos el objeto equipo */
+            File qr = new File(RUTA_QR);
+            File pic_out = new File(txtOutside.getText());
+            File pic_inside = new File(txtInside.getText());
+
+            Equipo equipo = new Equipo(
+                    data.toString(),
+                    qr,
+                    dchFecha.getDate(),
+                    pic_out,
+                    pic_inside);
+
+            /* Llenamos el objeto Detalle */
+            DetailEquipo detalle = new DetailEquipo(
+                    data.toString(),
+                    txtCedula.getText(),
+                    txtPlacaBase.getText(),
+                    txtProcesador.getText(),
+                    txtMemoria.getText(),
+                    txtDisco.getText(),
+                    txtFuente.getText(),
+                    cmbRespaldo.getSelectedItem().toString(),
+                    areaFalla.getText());
+
+            datos.con.setAutoCommit(false);
+
+            if (datos.agregarCliente(cliente)) {
+
+                if (datos.agregarEquipo(equipo)) {
+
+                    if (datos.agregarDetalle(detalle)) {
+                        
+                        JOptionPane.showMessageDialog(rootPane, "Equipo registrado correctamente ");
+                        datos.con.commit();
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el equipo "
+                                + "por favor intentelo mas tarde ");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el equipo "
+                            + "por favor intentelo mas tarde ");
+                }
+                
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el equipo "
+                        + "por favor intentelo mas tarde ");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(frmEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btnAgregarDetalleActionPerformed
 
     /**
      * @param args the command line arguments

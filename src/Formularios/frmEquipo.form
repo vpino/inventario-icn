@@ -53,6 +53,9 @@
       </Layout>
       <SubComponents>
         <Container class="org.edisoncor.gui.tabbedPane.TabbedPaneHeader" name="panelTop">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
@@ -207,6 +210,9 @@
               </SubComponents>
             </Container>
             <Container class="org.edisoncor.gui.panel.Panel" name="panelEquipo">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Equipo">
@@ -412,11 +418,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Siguiente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSiguienteEquipoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="org.edisoncor.gui.button.ButtonAction" name="btnAtras">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Atras"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric13">
                   <Properties>
@@ -429,6 +441,9 @@
               </SubComponents>
             </Container>
             <Container class="org.edisoncor.gui.panel.Panel" name="panelDiagnostico">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Diagnostico">
@@ -487,13 +502,15 @@
                                               <Component id="labelMetric14" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="cmbRespaldo" min="-2" pref="84" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtProcesador" alignment="0" pref="216" max="32767" attributes="0"/>
+                                                  <Component id="txtFuente" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="txtProcesador" alignment="0" pref="216" max="32767" attributes="0"/>
-                                              <Component id="txtFuente" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="cmbRespaldo" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -594,6 +611,14 @@
                   </Properties>
                 </Component>
                 <Component class="org.edisoncor.gui.comboBox.ComboBoxRound" name="cmbRespaldo">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Si"/>
+                        <StringItem index="1" value="No"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric21">
                   <Properties>
@@ -619,11 +644,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Atras"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasDetalleActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="org.edisoncor.gui.button.ButtonAction" name="btnAgregarDetalle">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarDetalleActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

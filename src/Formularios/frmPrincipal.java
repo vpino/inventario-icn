@@ -112,7 +112,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void mnuMovimientosGestionEqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimientosGestionEqActionPerformed
        
-        frmEquipos equi = new frmEquipos();
+        frmEquipo equi = new frmEquipo();
         equi.setLocationRelativeTo(null);
         equi.setVisible(true);
 
